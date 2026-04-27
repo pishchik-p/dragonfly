@@ -35,5 +35,6 @@ const ejsHtmlPlugin = () => ({
 });
 
 export default defineConfig({
+  base: '/dragonfly/',
   plugins: [tailwindcss(), ejsHtmlPlugin()],
 });
