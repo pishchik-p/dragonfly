@@ -1,0 +1,79 @@
+<%
+const aboutVideos = [
+  {
+    id: 'ZpqeS75vXuo',
+    title: 'Видео о DRAGONFLY — отзыв 1',
+  },
+  {
+    id: 'qF7MgL3jl44',
+    title: 'Видео о DRAGONFLY — отзыв 2',
+  },
+  {
+    id: 'ZctnsmWDLuc',
+    title: 'Видео о DRAGONFLY — отзыв 3',
+  },
+];
+%>
+
+<section class="layout-section relative overflow-visible" aria-labelledby="about-video-title" data-section="about-video">
+  <img
+    class="pointer-events-none absolute left-1/2 top-[-340px] z-0 hidden size-[1200px] max-w-none -translate-x-[830px] select-none xl:block"
+    src="/images/figma/gold-ellipse.svg"
+    alt=""
+    aria-hidden="true"
+  >
+
+  <div class="layout-container relative z-10 flex flex-col items-center gap-8 xl:gap-11">
+    <h2 id="about-video-title" class="type-h2 w-full text-left text-white">О нас говорят</h2>
+
+    <div class="w-full overflow-hidden" data-slider="about-video">
+      <div class="scrollbar-none flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth xl:gap-6" data-slider-track id="about-video-slider">
+        <% aboutVideos.forEach(function (video) { %>
+          <div class="relative aspect-video w-full shrink-0 snap-start overflow-hidden rounded-[16px] bg-background lg:w-[calc((100%_-_24px)/2)] xl:h-[337px] xl:w-[600px] xl:aspect-auto">
+            <iframe
+              class="absolute inset-0 size-full rounded-[16px] border-0"
+              src="https://www.youtube-nocookie.com/embed/<%= video.id %>"
+              title="<%= video.title %>"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="flex w-full gap-4 md:w-auto" role="group" aria-label="Управление видео">
+      <button
+        type="button"
+        data-slider-prev="about-video"
+        class="flex h-12 min-w-0 flex-1 items-center justify-center rounded-[100px] bg-background px-11 text-accent transition-colors duration-200 ease-out hover:bg-[#3d3a36] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover md:w-[108px] md:flex-none md:px-0"
+        aria-label="Предыдущее видео"
+        aria-controls="about-video-slider"
+      >
+        <img
+          class="h-[12px] w-[12px] max-w-none"
+          src="/icons/figma/slider-prev.svg"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+      <button
+        type="button"
+        data-slider-next="about-video"
+        class="flex h-12 min-w-0 flex-1 items-center justify-center rounded-[100px] bg-background px-11 text-accent transition-colors duration-200 ease-out hover:bg-[#3d3a36] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover md:w-[108px] md:flex-none md:px-0"
+        aria-label="Следующее видео"
+        aria-controls="about-video-slider"
+      >
+        <img
+          class="h-[12px] w-[12px] max-w-none"
+          src="/icons/figma/slider-next.svg"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+    </div>
+
+  </div>
+</section>

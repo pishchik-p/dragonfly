@@ -1,0 +1,10 @@
+<%
+const input = typeof locals !== 'undefined' && locals ? locals : {};
+const labelText = typeof input.label === 'string' ? input.label : (typeof input.labels === 'string' ? input.labels : '');
+const extraClassName = typeof input.className === 'string' ? input.className : '';
+const baseClasses = 'inline-flex h-8 shrink-0 items-center justify-center rounded-[100px] border border-accent bg-[rgba(41,30,0,0.64)] px-4 py-2.5 text-center text-[14px] leading-[1.2] font-semibold whitespace-nowrap text-white shadow-[0_0_16px_#AD871E] backdrop-blur-[4px] lg:h-9 lg:text-[16px] lg:leading-none';
+const className = [baseClasses, extraClassName].filter(Boolean).join(' ');
+const attributes = input.attributes && typeof input.attributes === 'object' && !Array.isArray(input.attributes) ? input.attributes : {};
+const validAttributeName = /^[A-Za-z_:][A-Za-z0-9:_.-]*$/;
+%>
+<span class="<%= className %>"<% Object.entries(attributes).forEach(([name, value]) => { if (validAttributeName.test(name) && value !== false && value != null) { %> <%- name %><% if (value !== true) { %>="<%= value %>"<% } %><% } }); %>><%= labelText %></span>

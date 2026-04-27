@@ -1,0 +1,21 @@
+<%
+const input = typeof locals !== 'undefined' && locals ? locals : {};
+const labelText = typeof input.label === 'string' ? input.label : (typeof input.labels === 'string' ? input.labels : '');
+const chipState = ['default', 'hover', 'pressed'].includes(input.state) ? input.state : 'default';
+const isInteractive = input.interactive === true || typeof input.href === 'string' || typeof input.type === 'string';
+const hrefValue = typeof input.href === 'string' ? input.href : '';
+const isLink = hrefValue.length > 0;
+const chipType = ['button', 'submit', 'reset'].includes(input.type) ? input.type : 'button';
+const extraClassName = typeof input.className === 'string' ? input.className : '';
+const baseClasses = 'inline-flex h-8 shrink-0 items-center justify-center rounded-[100px] border px-6 text-center text-[16px] leading-none font-semibold text-white transition-colors duration-200 ease-out md:h-9 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover';
+const stateClasses = {
+  default: 'border-border bg-shape hover:bg-accent-hover hover:text-black active:bg-accent active:text-black',
+  hover: 'border-accent-hover bg-accent-hover text-white',
+  pressed: 'border-accent bg-accent text-white',
+};
+const className = [baseClasses, stateClasses[chipState], extraClassName].filter(Boolean).join(' ');
+const attributes = input.attributes && typeof input.attributes === 'object' && !Array.isArray(input.attributes) ? input.attributes : {};
+const validAttributeName = /^[A-Za-z_:][A-Za-z0-9:_.-]*$/;
+const tagName = isLink ? 'a' : (isInteractive ? 'button' : 'span');
+%>
+<<%= tagName %> class="<%= className %>"<% if (isLink) { %> href="<%= hrefValue %>"<% } else if (tagName === 'button') { %> type="<%= chipType %>"<% } %><% if (chipState === 'pressed' && tagName === 'button') { %> aria-pressed="true"<% } %><% Object.entries(attributes).forEach(([name, value]) => { if (validAttributeName.test(name) && value !== false && value != null) { %> <%- name %><% if (value !== true) { %>="<%= value %>"<% } %><% } }); %>><%= labelText %></<%= tagName %>>

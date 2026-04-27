@@ -1,0 +1,29 @@
+<%
+const input = typeof locals !== 'undefined' && locals ? locals : {};
+const labelText = typeof input.label === 'string' ? input.label : (typeof input.labels === 'string' ? input.labels : '');
+const buttonVariant = ['primary', 'secondary'].includes(input.variant) ? input.variant : 'primary';
+const buttonSize = ['large', 'small'].includes(input.size) ? input.size : 'large';
+const buttonState = ['default', 'disabled'].includes(input.state) ? input.state : 'default';
+const buttonType = ['button', 'submit', 'reset'].includes(input.type) ? input.type : 'button';
+const isDisabled = buttonState === 'disabled' || input.disabled === true;
+const hrefValue = typeof input.href === 'string' ? input.href : '';
+const isLink = hrefValue.length > 0 && !isDisabled;
+const extraClassName = typeof input.className === 'string' ? input.className : '';
+const baseClasses = 'inline-flex shrink-0 items-center justify-center gap-2 rounded-[100px] border font-semibold whitespace-nowrap transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed';
+const sizeClasses = {
+  large: 'h-11 px-6 text-[14px] leading-[1.2] md:h-12 lg:text-[16px] lg:leading-none',
+  small: 'h-8 px-6 text-[14px] leading-[1.2] md:h-9 lg:text-[16px] lg:leading-none',
+};
+const variantClasses = {
+  primary: isDisabled
+    ? 'border-[#3D3A31] bg-[#3D3A31] text-[#5C5749]'
+    : 'border-accent bg-accent text-white hover:border-accent-hover hover:bg-accent-hover active:border-accent active:bg-accent',
+  secondary: isDisabled
+    ? 'border-[#3D3A31] bg-transparent text-[#5C5749]'
+    : 'border-accent bg-transparent text-white hover:border-accent-hover active:border-accent',
+};
+const className = [baseClasses, sizeClasses[buttonSize], variantClasses[buttonVariant], extraClassName].filter(Boolean).join(' ');
+const attributes = input.attributes && typeof input.attributes === 'object' && !Array.isArray(input.attributes) ? input.attributes : {};
+const validAttributeName = /^[A-Za-z_:][A-Za-z0-9:_.-]*$/;
+%>
+<<%= isLink ? 'a' : 'button' %> class="<%= className %>"<% if (isLink) { %> href="<%= hrefValue %>"<% } else { %> type="<%= buttonType %>"<% } %><% if (isDisabled) { %> disabled aria-disabled="true"<% } %><% Object.entries(attributes).forEach(([name, value]) => { if (validAttributeName.test(name) && value !== false && value != null) { %> <%- name %><% if (value !== true) { %>="<%= value %>"<% } %><% } }); %>><%= labelText %></<%= isLink ? 'a' : 'button' %>>

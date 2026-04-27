@@ -1,0 +1,47 @@
+<% const riskModal = content.riskModal; %>
+
+<div
+  id="risk-modal"
+  class="fixed inset-0 z-50 hidden items-start justify-center overflow-y-auto bg-black/72 py-4 md:py-6"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-labelledby="risk-modal-title"
+  data-risk-modal
+>
+  <div class="absolute inset-0" data-risk-modal-close aria-hidden="true"></div>
+
+  <section class="relative w-[calc(100%_-_32px)] rounded-[16px] border border-border bg-black p-4 text-white shadow-[0_0_24px_rgba(204,154,16,0.16)] md:w-[calc(100%_-_48px)] md:p-11 lg:w-[720px] lg:rounded-[24px]" aria-labelledby="risk-modal-title">
+    <button
+      class="absolute right-4 top-4 flex size-6 items-center justify-center opacity-16 transition-opacity hover:opacity-50 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover md:right-6 md:top-6"
+      type="button"
+      aria-label="Закрыть уведомление о рисках"
+      data-risk-modal-close
+    >
+      <img
+        src="/icons/figma/close.svg"
+        alt=""
+        class="size-6 shrink-0"
+        aria-hidden="true"
+      >
+    </button>
+
+    <div class="flex flex-col gap-6 md:gap-8">
+      <h2 id="risk-modal-title" class="type-h4 text-white"><%= riskModal.title %></h2>
+
+      <div class="type-body flex flex-col gap-4 text-text">
+        <% riskModal.paragraphs.forEach(function (paragraph) { %>
+          <p><%= paragraph %></p>
+        <% }) %>
+      </div>
+
+      <%- include('../ui/button', {
+        label: riskModal.acceptLabel,
+        variant: 'primary',
+        size: 'large',
+        className: 'w-full md:w-fit md:self-end',
+        attributes: { 'data-risk-modal-close': true }
+      }) %>
+    </div>
+  </section>
+</div>

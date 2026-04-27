@@ -1,0 +1,55 @@
+<%
+  const cardHref = typeof href === 'string' && href ? href : '';
+  const cardId = typeof id === 'string' && id ? id : '';
+  const cardTitle = typeof title === 'string' ? title : '';
+  const cardEyebrow = typeof eyebrow === 'string' ? eyebrow : '';
+  const cardDescription = typeof description === 'string' ? description : '';
+  const cardBody = typeof body === 'string' ? body : '';
+  const cardHtml = typeof html === 'string' ? html : (typeof content === 'string' ? content : '');
+  const cardFooter = typeof footer === 'string' ? footer : '';
+  const cardClassName = typeof className === 'string' ? className : '';
+  const cardContentClassName = typeof contentClassName === 'string' ? contentClassName : '';
+  const labelledByValue = typeof labelledby === 'string' && labelledby ? labelledby : '';
+  const titleId = cardId ? `${cardId}-title` : '';
+  const isBordered = typeof bordered === 'undefined' || bordered !== false;
+  const isInteractive = (typeof interactive !== 'undefined' && interactive === true) || Boolean(cardHref);
+  const paddingClass = typeof padded !== 'undefined' && padded === false ? 'p-0' : 'p-5 md:p-6';
+  const borderClass = isBordered ? 'border border-border' : 'border border-transparent';
+  const interactionClass = isInteractive ? 'transition-[background-color,border-color,transform] duration-300 ease-out hover:-translate-y-1 hover:border-[#333027] hover:bg-[#292722] focus-visible:-translate-y-1' : '';
+  const ariaLabelledby = labelledByValue || titleId;
+%>
+
+<% if (cardHref) { %>
+  <a
+    href="<%= cardHref %>"
+    class="block rounded-2xl bg-background text-text md:rounded-3xl <%= borderClass %> <%= paddingClass %> <%= interactionClass %> <%= cardClassName %>"
+    data-component="card"
+    <% if (cardId) { %>id="<%= cardId %>"<% } %>
+    <% if (ariaLabelledby) { %>aria-labelledby="<%= ariaLabelledby %>"<% } %>
+  >
+    <span class="flex flex-col gap-3 <%= cardContentClassName %>">
+      <% if (cardEyebrow) { %><span class="type-body-small text-accent"><%= cardEyebrow %></span><% } %>
+      <% if (cardTitle) { %><span id="<%= titleId %>" class="type-h5 block text-white"><%= cardTitle %></span><% } %>
+      <% if (cardDescription) { %><span class="type-body block text-text"><%= cardDescription %></span><% } %>
+      <% if (cardBody) { %><span class="type-body block text-text"><%= cardBody %></span><% } %>
+      <% if (cardHtml) { %><span class="block"><%- cardHtml %></span><% } %>
+      <% if (cardFooter) { %><span class="type-body-small mt-1 block text-text"><%= cardFooter %></span><% } %>
+    </span>
+  </a>
+<% } else { %>
+  <article
+    class="rounded-2xl bg-background text-text md:rounded-3xl <%= borderClass %> <%= paddingClass %> <%= interactionClass %> <%= cardClassName %>"
+    data-component="card"
+    <% if (cardId) { %>id="<%= cardId %>"<% } %>
+    <% if (ariaLabelledby) { %>aria-labelledby="<%= ariaLabelledby %>"<% } %>
+  >
+    <div class="flex flex-col gap-3 <%= cardContentClassName %>">
+      <% if (cardEyebrow) { %><p class="type-body-small text-accent"><%= cardEyebrow %></p><% } %>
+      <% if (cardTitle) { %><h3 id="<%= titleId %>" class="type-h5 text-white"><%= cardTitle %></h3><% } %>
+      <% if (cardDescription) { %><p class="type-body text-text"><%= cardDescription %></p><% } %>
+      <% if (cardBody) { %><p class="type-body text-text"><%= cardBody %></p><% } %>
+      <% if (cardHtml) { %><div><%- cardHtml %></div><% } %>
+      <% if (cardFooter) { %><p class="type-body-small mt-1 text-text"><%= cardFooter %></p><% } %>
+    </div>
+  </article>
+<% } %>

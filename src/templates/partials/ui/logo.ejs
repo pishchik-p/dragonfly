@@ -1,0 +1,74 @@
+<%
+  const logoVariant = typeof variant === 'string' ? variant : 'full';
+  const logoClassName = typeof className === 'string' ? className : '';
+  const logoLabel = typeof label === 'string' ? label : 'DRAGONFLY';
+  const isDecorativeLogo = typeof decorative !== 'undefined' && decorative === true;
+
+  const fullSymbolSrc = '/icons/figma/logo-symbol-full.svg';
+  const wordmarkSrc = '/icons/figma/logo-wordmark.svg';
+  const symbolSrc = '/icons/figma/logo-symbol.svg';
+
+  const baseAttrs = isDecorativeLogo
+    ? 'aria-hidden="true"'
+    : `role="img" aria-label="${logoLabel.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"`;
+%>
+
+<% if (logoVariant === 'symbol') { %>
+  <span
+    class="relative block h-[62px] w-16 shrink-0 overflow-hidden <%= logoClassName %>"
+    data-node-id="38:128"
+    data-name="Logo-Symbol"
+    <%- baseAttrs %>
+  >
+    <img
+      src="<%= symbolSrc %>"
+      alt="<%= isDecorativeLogo ? '' : logoLabel %>"
+      class="absolute inset-0 block size-full max-w-none"
+      loading="eager"
+      decoding="async"
+    >
+  </span>
+<% } else if (logoVariant === 'mobile') { %>
+  <span
+    class="inline-flex h-[62px] items-center gap-3 text-accent <%= logoClassName %>"
+    data-name="Logo-Mobile"
+    <%- baseAttrs %>
+  >
+    <span class="relative block h-[62px] w-16 shrink-0 overflow-hidden" aria-hidden="true" data-node-id="38:128">
+      <img
+        src="<%= symbolSrc %>"
+        alt=""
+        class="absolute inset-0 block size-full max-w-none"
+        loading="eager"
+        decoding="async"
+      >
+    </span>
+    <span class="text-2xl font-[200] leading-none tracking-[0.02em] text-accent">DRAGONFLY</span>
+  </span>
+<% } else { %>
+  <span
+    class="relative block h-[78px] w-64 shrink-0 <%= logoClassName %>"
+    data-node-id="109:593"
+    data-name="Logo"
+    <%- baseAttrs %>
+  >
+    <span class="absolute inset-y-0 left-0 block w-20 overflow-hidden" aria-hidden="true" data-node-id="109:578">
+      <img
+        src="<%= fullSymbolSrc %>"
+        alt=""
+        class="absolute inset-0 block size-full max-w-none"
+        loading="eager"
+        decoding="async"
+      >
+    </span>
+    <span class="absolute bottom-[37.18%] left-[37.5%] right-0 top-[37.18%] block" aria-hidden="true" data-node-id="109:592">
+      <img
+        src="<%= wordmarkSrc %>"
+        alt=""
+        class="absolute inset-0 block size-full max-w-none"
+        loading="eager"
+        decoding="async"
+      >
+    </span>
+  </span>
+<% } %>

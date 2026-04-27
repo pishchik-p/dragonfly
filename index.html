@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="<%= page.lang %>">
+  <head>
+    <%- include('partials/layout/head', { page }) %>
+  </head>
+  <%- include('partials/layout/body-open') %>
+  <%- include('partials/sections/header') %>
+  <%- include('partials/layout/main-open') %>
+    <%- include('partials/sections/hero') %>
+    <%- include('partials/sections/revenue-stats') %>
+    <%- include('partials/sections/risks-strategy') %>
+    <%- include('partials/sections/about-video') %>
+    <%- include('partials/sections/reviews') %>
+    <%- include('partials/sections/pricing') %>
+    <%- include('partials/sections/faq') %>
+  <%- include('partials/layout/main-close') %>
+  <%- include('partials/sections/footer') %>
+  <%- include('partials/sections/risk-modal') %>
+  <%- include('partials/layout/body-close') %>
+</html>

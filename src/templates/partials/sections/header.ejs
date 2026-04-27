@@ -1,0 +1,113 @@
+<header class="absolute inset-x-0 top-0 z-20 bg-transparent" aria-label="Шапка сайта">
+  <div class="layout-container flex items-center justify-between py-4">
+    <a href="#app" class="inline-flex shrink-0 focus-visible:rounded-sm" aria-label="DRAGONFLY — перейти к началу страницы">
+      <span class="lg:hidden">
+        <%- include('../ui/logo', { variant: 'mobile', label: 'DRAGONFLY', decorative: true }) %>
+      </span>
+      <span class="hidden lg:block">
+        <%- include('../ui/logo', { variant: 'full', label: 'DRAGONFLY', decorative: true }) %>
+      </span>
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Основная навигация">
+      <ul class="flex items-start gap-10 text-[16px] font-semibold leading-none text-white">
+        <li>
+          <a class="transition-colors hover:text-accent-hover focus-visible:rounded-sm" href="#risks">Стратегии</a>
+        </li>
+        <li>
+          <a class="transition-colors hover:text-accent-hover focus-visible:rounded-sm" href="#pricing">Стоимость</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex" aria-label="Быстрые действия">
+      <a
+        href="https://t.me/dragonfly_robot"
+        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#30ACEB] text-white transition-colors hover:bg-[#52BDF0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover"
+        aria-label="Открыть Telegram DRAGONFLY"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="/icons/header-telegram.svg" alt="" class="size-6 shrink-0" aria-hidden="true">
+      </a>
+      <%- include('../ui/button', {
+        label: 'Подключить бота',
+        href: 'https://youtu.be/xOcFb_trRMw?si=qsBxsej-1dmHWzk9',
+        variant: 'primary',
+        size: 'large',
+        attributes: { 'aria-label': 'Подключить торгового бота DRAGONFLY', target: '_blank', rel: 'noopener noreferrer' }
+      }) %>
+    </div>
+
+    <button
+      class="flex size-11 shrink-0 items-center justify-end text-white transition-colors hover:text-accent-hover focus-visible:rounded-sm lg:hidden"
+      type="button"
+      aria-label="Открыть меню"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-open
+    >
+      <%- include('../ui/icon', { name: 'menu', size: 24, decorative: true }) %>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-y-0 right-0 z-50 hidden h-dvh w-[280px] max-w-full bg-background px-4 lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Мобильное меню"
+    data-menu
+  >
+    <div class="flex h-[94px] w-full items-center justify-end">
+      <button
+        class="flex size-6 items-center justify-center opacity-16 transition-opacity hover:opacity-50 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover"
+        type="button"
+        aria-label="Закрыть меню"
+        data-menu-close
+      >
+        <img
+          src="/icons/figma/close.svg"
+          alt=""
+          class="size-6 shrink-0"
+          aria-hidden="true"
+        >
+      </button>
+    </div>
+
+    <div class="flex min-h-[calc(100dvh_-_94px)] w-full flex-col justify-between py-4">
+      <nav aria-label="Мобильная навигация">
+        <ul class="flex flex-col gap-8 text-[14px] font-semibold leading-[1.2] text-white">
+          <li>
+            <a class="block transition-colors hover:text-accent-hover focus-visible:rounded-sm" href="#risks" data-menu-link>Стратегии</a>
+          </li>
+          <li>
+            <a class="block transition-colors hover:text-accent-hover focus-visible:rounded-sm" href="#pricing" data-menu-link>Стоимость</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="flex w-full items-center gap-4">
+        <a
+          href="https://t.me/dragonfly_robot"
+          class="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#30ACEB] transition-colors hover:bg-[#52BDF0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover"
+          aria-label="Открыть Telegram DRAGONFLY"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-menu-link
+        >
+          <img src="/icons/header-telegram.svg" alt="" class="size-[22px] shrink-0" aria-hidden="true">
+        </a>
+
+        <%- include('../ui/button', {
+          label: 'Подключить бота',
+          href: 'https://youtu.be/xOcFb_trRMw?si=qsBxsej-1dmHWzk9',
+          variant: 'primary',
+          size: 'medium',
+          className: 'h-11 min-w-0 flex-1',
+          attributes: { 'aria-label': 'Подключить торгового бота DRAGONFLY', 'data-menu-link': true, target: '_blank', rel: 'noopener noreferrer' }
+        }) %>
+      </div>
+    </div>
+  </div>
+</header>

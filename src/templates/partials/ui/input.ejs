@@ -1,0 +1,55 @@
+<%
+  const inputId = typeof id === 'string' && id ? id : 'dragonfly-input';
+  const inputName = typeof name === 'string' && name ? name : inputId;
+  const inputType = typeof type === 'string' && type ? type : 'text';
+  const inputLabel = typeof label === 'string' ? label : '';
+  const inputPlaceholder = typeof placeholder === 'string' ? placeholder : 'Placeholder';
+  const inputValue = typeof value === 'string' || typeof value === 'number' ? String(value) : '';
+  const inputState = typeof state === 'string' ? state.toLowerCase() : 'default';
+  const inputError = typeof error === 'string' ? error : '';
+  const hasError = inputState === 'error' || inputError.length > 0;
+  const errorId = `${inputId}-error`;
+  const externalDescription = typeof describedBy === 'string' && describedBy ? describedBy : '';
+  const describedByValue = [externalDescription, hasError ? errorId : ''].filter(Boolean).join(' ');
+  const wrapperClassName = typeof className === 'string' ? className : '';
+  const fieldClassName = typeof inputClassName === 'string' ? inputClassName : '';
+  const autocompleteValue = typeof autocomplete === 'string' && autocomplete ? autocomplete : '';
+  const isRequired = typeof required !== 'undefined' && required === true;
+  const isDisabled = typeof disabled !== 'undefined' && disabled === true;
+  const isReadonly = typeof readonly !== 'undefined' && readonly === true;
+  const stateClass = hasError
+    ? 'border-[#E0452D] bg-[#292722] text-white placeholder:text-white/70 focus:border-[#E0452D] focus:ring-[#E0452D]/25'
+    : inputState === 'active'
+      ? 'border-[#333027] bg-[#292722] text-white placeholder:text-white focus:border-[#333027] focus:ring-[#EBC04B]/20'
+      : 'border-[#29261F] bg-[#1F1E1B] text-white placeholder:text-[#B8B8B8] focus:border-[#333027] focus:bg-[#292722] focus:ring-[#EBC04B]/20';
+%>
+
+<div class="flex w-full max-w-[240px] flex-col gap-1.5 <%= wrapperClassName %>" data-component="input" data-state="<%= hasError ? 'error' : inputState %>">
+  <% if (inputLabel) { %>
+    <label for="<%= inputId %>" class="type-body-small text-white">
+      <%= inputLabel %><% if (isRequired) { %><span class="text-[#E0452D]" aria-hidden="true"> *</span><% } %>
+    </label>
+  <% } %>
+
+  <input
+    id="<%= inputId %>"
+    name="<%= inputName %>"
+    type="<%= inputType %>"
+    class="h-11 w-full min-w-0 rounded-[15px] border px-4 font-sans text-[14px] font-normal leading-[1.48] outline-none transition-[background-color,border-color,box-shadow] duration-200 ease-out md:h-12 lg:text-[16px] <%= stateClass %> <%= fieldClassName %>"
+    placeholder="<%= inputPlaceholder %>"
+    value="<%= inputValue %>"
+    <% if (!inputLabel) { %>aria-label="<%= inputPlaceholder || inputName %>"<% } %>
+    <% if (describedByValue) { %>aria-describedby="<%= describedByValue %>"<% } %>
+    <% if (hasError) { %>aria-invalid="true"<% } %>
+    <% if (isRequired) { %>required<% } %>
+    <% if (isDisabled) { %>disabled<% } %>
+    <% if (isReadonly) { %>readonly<% } %>
+    <% if (autocompleteValue) { %>autocomplete="<%= autocompleteValue %>"<% } %>
+  >
+
+  <% if (hasError && inputError) { %>
+    <p id="<%= errorId %>" class="text-[12px] font-normal leading-[1.48] text-[#E0452D] lg:text-[14px]">
+      <%= inputError %>
+    </p>
+  <% } %>
+</div>

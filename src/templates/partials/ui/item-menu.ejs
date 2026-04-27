@@ -1,0 +1,52 @@
+<%
+  const itemLabel = typeof label === 'string' ? label : (typeof text === 'string' ? text : 'Item Menu');
+  const itemHref = typeof href === 'string' && href ? href : '';
+  const itemState = typeof active !== 'undefined' && active === true ? 'active' : (typeof state === 'string' ? state.toLowerCase() : 'default');
+  const isActive = itemState === 'active' || itemState === 'hover';
+  const itemId = typeof id === 'string' && id ? id : '';
+  const itemType = typeof type === 'string' && type ? type : 'button';
+  const itemIcon = typeof icon !== 'undefined' && icon === false ? '' : (typeof icon === 'string' && icon ? icon : 'circle');
+  const itemClassName = typeof className === 'string' ? className : '';
+  const itemIconClassName = typeof iconClassName === 'string' ? iconClassName : '';
+  const controlsValue = typeof controls === 'string' && controls ? controls : '';
+  const expandedValue = typeof expanded === 'boolean' ? String(expanded) : '';
+  const currentValue = typeof current !== 'undefined' && current === true ? 'page' : (typeof current === 'string' && current ? current : '');
+  const isDisabled = typeof disabled !== 'undefined' && disabled === true;
+  const stateClass = isActive ? 'bg-[#292722]' : 'bg-transparent hover:bg-[#292722] focus-visible:bg-[#292722]';
+%>
+
+<% if (itemHref) { %>
+  <a
+    href="<%= itemHref %>"
+    class="inline-flex h-11 min-w-0 items-center gap-4 px-4 font-sans text-[14px] font-normal leading-[1.48] text-white transition-colors duration-200 ease-out md:h-12 md:px-6 lg:text-[16px] <%= stateClass %> <%= itemClassName %>"
+    data-component="item-menu"
+    data-state="<%= itemState %>"
+    <% if (itemId) { %>id="<%= itemId %>"<% } %>
+    <% if (currentValue) { %>aria-current="<%= currentValue %>"<% } %>
+  >
+    <% if (itemIcon) { %>
+      <span class="flex size-[14px] shrink-0 items-center justify-center text-accent md:size-4 <%= itemIconClassName %>" aria-hidden="true">
+        <%- include('partials/ui/icon', { name: itemIcon, size: '100%', decorative: true }) %>
+      </span>
+    <% } %>
+    <span class="truncate whitespace-nowrap"><%= itemLabel %></span>
+  </a>
+<% } else { %>
+  <button
+    type="<%= itemType %>"
+    class="inline-flex h-11 min-w-0 items-center gap-4 px-4 font-sans text-[14px] font-normal leading-[1.48] text-white transition-colors duration-200 ease-out disabled:pointer-events-none disabled:opacity-50 md:h-12 md:px-6 lg:text-[16px] <%= stateClass %> <%= itemClassName %>"
+    data-component="item-menu"
+    data-state="<%= itemState %>"
+    <% if (itemId) { %>id="<%= itemId %>"<% } %>
+    <% if (controlsValue) { %>aria-controls="<%= controlsValue %>"<% } %>
+    <% if (expandedValue) { %>aria-expanded="<%= expandedValue %>"<% } %>
+    <% if (isDisabled) { %>disabled<% } %>
+  >
+    <% if (itemIcon) { %>
+      <span class="flex size-[14px] shrink-0 items-center justify-center text-accent md:size-4 <%= itemIconClassName %>" aria-hidden="true">
+        <%- include('partials/ui/icon', { name: itemIcon, size: '100%', decorative: true }) %>
+      </span>
+    <% } %>
+    <span class="truncate whitespace-nowrap"><%= itemLabel %></span>
+  </button>
+<% } %>

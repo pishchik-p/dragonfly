@@ -1,0 +1,65 @@
+<%
+  const listItems = typeof items !== 'undefined' && Array.isArray(items) ? items : [];
+  const isOrdered = typeof ordered !== 'undefined' && ordered === true;
+  const listClassName = typeof className === 'string' ? className : '';
+  const listItemClassName = typeof itemClassName === 'string' ? itemClassName : '';
+  const defaultIcon = typeof icon === 'string' && icon ? icon : 'checkmark';
+  const listIconClassName = typeof iconClassName === 'string' ? iconClassName : '';
+  const ariaLabelValue = typeof ariaLabel === 'string' && ariaLabel ? ariaLabel : '';
+  const labelledByValue = typeof labelledby === 'string' && labelledby ? labelledby : '';
+  const gapClass = typeof dense !== 'undefined' && dense === true ? 'gap-2' : 'gap-3 md:gap-4';
+%>
+
+<% if (isOrdered) { %>
+  <ol
+    class="flex list-decimal flex-col pl-5 text-text <%= gapClass %> <%= listClassName %>"
+    data-component="list"
+    <% if (ariaLabelValue) { %>aria-label="<%= ariaLabelValue %>"<% } %>
+    <% if (labelledByValue) { %>aria-labelledby="<%= labelledByValue %>"<% } %>
+  >
+    <% listItems.forEach(function(item) { %>
+      <%
+        const itemIsObject = item && typeof item === 'object';
+        const itemLabel = itemIsObject ? (typeof item.label === 'string' ? item.label : (typeof item.title === 'string' ? item.title : '')) : String(item);
+        const itemDescription = itemIsObject && typeof item.description === 'string' ? item.description : '';
+        const itemHtml = itemIsObject && typeof item.html === 'string' ? item.html : '';
+      %>
+      <li class="type-body pl-1 <%= listItemClassName %>">
+        <% if (itemHtml) { %><%- itemHtml %><% } else { %>
+          <span class="text-white"><%= itemLabel %></span>
+          <% if (itemDescription) { %><span class="mt-1 block text-text"><%= itemDescription %></span><% } %>
+        <% } %>
+      </li>
+    <% }) %>
+  </ol>
+<% } else { %>
+  <ul
+    class="flex list-none flex-col p-0 text-text <%= gapClass %> <%= listClassName %>"
+    data-component="list"
+    <% if (ariaLabelValue) { %>aria-label="<%= ariaLabelValue %>"<% } %>
+    <% if (labelledByValue) { %>aria-labelledby="<%= labelledByValue %>"<% } %>
+  >
+    <% listItems.forEach(function(item) { %>
+      <%
+        const itemIsObject = item && typeof item === 'object';
+        const itemLabel = itemIsObject ? (typeof item.label === 'string' ? item.label : (typeof item.title === 'string' ? item.title : '')) : String(item);
+        const itemDescription = itemIsObject && typeof item.description === 'string' ? item.description : '';
+        const itemHtml = itemIsObject && typeof item.html === 'string' ? item.html : '';
+        const itemIcon = itemIsObject && item.icon === false ? '' : (itemIsObject && typeof item.icon === 'string' && item.icon ? item.icon : defaultIcon);
+      %>
+      <li class="type-body flex items-start gap-3 <%= listItemClassName %>">
+        <% if (itemIcon) { %>
+          <span class="mt-[0.15em] flex size-5 shrink-0 items-center justify-center text-accent <%= listIconClassName %>" aria-hidden="true">
+            <%- include('partials/ui/icon', { name: itemIcon, size: '100%', decorative: true }) %>
+          </span>
+        <% } %>
+        <span class="min-w-0 flex-1">
+          <% if (itemHtml) { %><%- itemHtml %><% } else { %>
+            <span class="text-white"><%= itemLabel %></span>
+            <% if (itemDescription) { %><span class="mt-1 block text-text"><%= itemDescription %></span><% } %>
+          <% } %>
+        </span>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

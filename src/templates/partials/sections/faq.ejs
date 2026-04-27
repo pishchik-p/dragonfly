@@ -1,0 +1,38 @@
+<% const faqItems = content.faqItems; %>
+
+<section class="layout-section" aria-labelledby="faq-title" data-section="faq">
+  <div class="layout-container flex flex-col gap-8 md:gap-11">
+    <h2 id="faq-title" class="type-h2 text-white">FAQ</h2>
+
+    <div class="flex flex-col" role="list" aria-label="Часто задаваемые вопросы">
+      <% faqItems.forEach(function (item, index) { %>
+        <details
+          class="group border-t border-[#29261F] text-white last:border-b"
+          <%= item.open ? 'open' : '' %>
+          role="listitem"
+        >
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[18px] font-semibold leading-[1.16] text-white transition-colors hover:text-accent-hover focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent-hover md:py-6 lg:text-[20px] [&::-webkit-details-marker]:hidden">
+            <span class="min-w-0 flex-1"><%= item.question %></span>
+            <img
+              src="/icons/faq-arrow.svg"
+              alt=""
+              class="h-[7px] w-[14px] shrink-0 transition-transform duration-200 ease-out group-open:rotate-180"
+              aria-hidden="true"
+            >
+          </summary>
+
+          <% if (item.answer) { %>
+            <div
+              id="faq-answer-<%= index + 1 %>"
+              class="max-w-[760px] py-4 text-[14px] font-normal leading-[1.48] text-text md:pt-0 md:pb-6 lg:text-[16px]"
+              role="region"
+              aria-label="Ответ: <%= item.question %>"
+            >
+              <p><%= item.answer %></p>
+            </div>
+          <% } %>
+        </details>
+      <% }) %>
+    </div>
+  </div>
+</section>

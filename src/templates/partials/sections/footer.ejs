@@ -1,0 +1,39 @@
+<footer class="pt-[calc(var(--layout-section-gap)/2)] pb-0" aria-label="Подвал сайта" data-section="footer">
+  <div class="layout-container flex flex-col gap-8 md:gap-11">
+    <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-[80px]">
+        <a href="#app" class="inline-flex size-fit focus-visible:rounded-sm" aria-label="DRAGONFLY — перейти к началу страницы">
+          <span class="hidden md:block">
+            <%- include('../ui/logo', { variant: 'symbol', label: 'DRAGONFLY' }) %>
+          </span>
+          <span class="block h-[46px] w-12 overflow-hidden md:hidden" aria-hidden="true">
+            <%- include('../ui/logo', { variant: 'symbol', decorative: true, className: 'origin-top-left scale-75' }) %>
+          </span>
+        </a>
+
+        <address class="flex flex-col gap-3 not-italic text-white" aria-label="Контакты DRAGONFLY">
+          <a class="inline-flex items-center gap-3 text-[14px] leading-[1.48] transition-colors hover:text-accent-hover focus-visible:rounded-sm lg:text-[16px]" href="mailto:dragonfly@gmail.com">
+            <img src="/icons/mail.svg" alt="" class="size-[14px] shrink-0 md:size-4" aria-hidden="true">
+            <span>dragonfly@gmail.com</span>
+          </a>
+          <a class="inline-flex items-center gap-3 text-[14px] leading-[1.48] transition-colors hover:text-accent-hover focus-visible:rounded-sm lg:text-[16px]" href="https://t.me/dragonfly_robot" aria-label="Открыть Telegram DRAGONFLY" target="_blank" rel="noopener noreferrer">
+            <img src="/icons/telegram.svg" alt="" class="size-[14px] shrink-0 md:size-4" aria-hidden="true">
+            <span>@dragonfly</span>
+          </a>
+        </address>
+      </div>
+
+      <nav class="flex flex-col gap-3 text-[14px] leading-[1.48] text-text md:max-w-[392px] lg:text-[16px]" aria-label="Правовая информация">
+        <p>Не&nbsp;является индивидуальной инвестиционной рекомендацией</p>
+        <a class="inline-flex items-center gap-3 text-white underline decoration-white underline-offset-2 transition-colors hover:text-accent-hover hover:decoration-accent-hover focus-visible:rounded-sm" href="#risks" aria-controls="risk-modal" aria-haspopup="dialog" data-risk-modal-open>
+          <span>Ознакомиться с&nbsp;рисками</span>
+          <img src="/icons/figma/arrow-right.svg" alt="" class="h-3 w-3 shrink-0" aria-hidden="true">
+        </a>
+      </nav>
+    </div>
+
+    <div class="rounded-t-[16px] bg-background py-4 text-center text-[12px] leading-[1.48] text-text lg:text-[14px]">
+      <p>2024 © Копирование сайта запрещено</p>
+    </div>
+  </div>
+</footer>

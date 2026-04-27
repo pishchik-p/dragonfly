@@ -1,0 +1,30 @@
+<% const reviews = content.reviews; %>
+
+<section class="layout-section relative overflow-hidden" aria-labelledby="reviews-title" data-section="reviews">
+  <div class="layout-container relative z-10 flex flex-col gap-8 xl:gap-11">
+    <h2 id="reviews-title" class="type-h2 text-white">Отзывы</h2>
+
+    <div class="scrollbar-none -mx-4 overflow-x-auto px-4 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0" aria-label="Отзывы клиентов">
+      <div class="flex w-max gap-4 md:w-full md:flex-wrap md:gap-6">
+        <% reviews.forEach(function (review) { %>
+          <article class="flex w-[216px] shrink-0 flex-col gap-3 md:w-[calc((100%_-_72px)/4)]" aria-labelledby="<%= review.id %>-title">
+            <div class="flex flex-col gap-2">
+              <h3 id="<%= review.id %>-title" class="text-[20px] font-semibold leading-[1.16] text-white lg:text-[28px]">
+                <%= review.name %>
+              </h3>
+              <p class="text-[14px] font-normal leading-[1.48] text-text lg:text-[16px]">
+                <%= review.age %>
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <p class="text-[14px] font-normal leading-[1.48] text-white lg:text-[16px]">
+                <%= review.text %>
+              </p>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
