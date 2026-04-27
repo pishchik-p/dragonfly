@@ -11,8 +11,8 @@ const isLink = hrefValue.length > 0 && !isDisabled;
 const extraClassName = typeof input.className === 'string' ? input.className : '';
 const baseClasses = 'inline-flex shrink-0 items-center justify-center gap-2 rounded-[100px] border font-semibold whitespace-nowrap transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-hover disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed';
 const sizeClasses = {
-  large: 'h-11 px-6 text-[14px] leading-[1.2] md:h-12 lg:text-[16px] lg:leading-none',
-  small: 'h-8 px-6 text-[14px] leading-[1.2] md:h-9 lg:text-[16px] lg:leading-none',
+  large: 'h-11 px-6 text-[14px] leading-[1.2] md:h-12 md:leading-none lg:text-[16px]',
+  small: 'h-8 px-6 text-[14px] leading-[1.2] md:h-9 md:leading-none lg:text-[16px]',
 };
 const variantClasses = {
   primary: isDisabled

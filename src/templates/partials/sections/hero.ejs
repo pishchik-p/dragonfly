@@ -10,12 +10,12 @@
       <div class="flex min-w-0 flex-1 flex-col gap-8 md:gap-[60px] lg:h-[496px] lg:justify-between">
         <div class="flex flex-col gap-6 text-white md:gap-11">
           <h1 id="hero-title" class="type-h1 max-w-[760px] text-white">
-            Софт для&nbsp;автоматизированной торговли
+            Софт для автоматизированной торговли
           </h1>
           <p class="type-h3 text-white">Торговые роботы DRAGONFLY</p>
         </div>
 
-        <div class="flex flex-col items-center gap-6 md:w-fit md:pb-11 lg:gap-8 xl:flex-row xl:items-center xl:gap-11 xl:pb-[112px]">
+        <div class="flex flex-col items-center gap-6 md:w-fit md:pb-11 lg:gap-8 lg:pb-11 xl:flex-row xl:items-center xl:gap-11 xl:pb-[112px]">
           <div class="flex w-full flex-col gap-4 md:w-auto md:flex-row md:items-center md:gap-6">
             <%- include('../ui/button', {
               label: 'Подключить бота',
@@ -49,16 +49,18 @@
         </div>
       </div>
 
-      <div class="relative h-[294px] w-full shrink-0 md:h-[372px] md:w-[273px] md:self-end md:pb-11 md:pr-3 lg:h-[496px] lg:w-[414px] lg:self-end lg:pb-11 lg:pr-0" aria-hidden="true">
-        <div class="absolute right-4 top-0 h-full w-[247px] overflow-hidden md:left-1/2 md:right-auto md:top-auto md:bottom-11 md:h-[328px] md:w-[242px] md:-translate-x-1/2 md:overflow-visible lg:top-0 lg:bottom-auto lg:h-[496px] lg:w-[366px] lg:overflow-hidden">
+      <div class="relative h-[295px] w-full shrink-0 md:h-[372px] md:w-[273px] md:self-end md:pb-11 md:pr-3 lg:h-[496px] lg:w-[414px] lg:self-end lg:pb-11 lg:pr-0" aria-hidden="true">
+        <picture>
+          <source srcset="/images/figma/hero-image.png" media="(min-width: 1024px)">
+          <source srcset="/images/figma/hero-image.png" media="(min-width: 768px)">
           <img
-            src="/images/figma/hero-person.png"
+            src="/images/figma/hero-image.png"
             alt=""
-            class="absolute left-0 top-0 h-auto w-full max-w-none"
+            class="absolute right-4 top-0 h-auto w-[216px] max-w-none md:left-1/2 md:right-auto md:top-auto md:bottom-0 md:w-[242px] md:-translate-x-1/2 lg:left-auto lg:right-6 lg:bottom-0 lg:w-[296px] lg:translate-x-0"
             loading="eager"
             decoding="async"
           >
-        </div>
+        </picture>
 
         <div class="pointer-events-none absolute left-0 top-[140px] flex flex-col items-start gap-4 md:left-[-15px] md:top-auto md:bottom-11 md:pr-3 lg:left-[-24px] lg:bottom-11 lg:gap-6 lg:pr-0 xl:bottom-[88px]">
           <%- include('../ui/tag', {

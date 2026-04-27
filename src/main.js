@@ -146,6 +146,22 @@ const initMobileMenu = (documentRoot) => {
   });
 };
 
+const initStickyHeader = (documentRoot) => {
+  const header = documentRoot.querySelector('[data-header]');
+
+  if (!header) {
+    return;
+  }
+
+  const updateHeaderBackground = () => {
+    header.classList.toggle('bg-black', window.scrollY > 0);
+    header.classList.toggle('bg-transparent', window.scrollY === 0);
+  };
+
+  updateHeaderBackground();
+  window.addEventListener('scroll', updateHeaderBackground, { passive: true });
+};
+
 const initRiskModal = (documentRoot) => {
   const modal = documentRoot.querySelector('[data-risk-modal]');
   const openTriggers = documentRoot.querySelectorAll('[data-risk-modal-open]');
@@ -185,6 +201,7 @@ const initRiskModal = (documentRoot) => {
 };
 
 initSliders(document);
+initStickyHeader(document);
 initMobileMenu(document);
 initRiskModal(document);
 markDocumentReady(document);

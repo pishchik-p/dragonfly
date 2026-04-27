@@ -4,9 +4,8 @@
   const logoLabel = typeof label === 'string' ? label : 'DRAGONFLY';
   const isDecorativeLogo = typeof decorative !== 'undefined' && decorative === true;
 
-  const fullSymbolSrc = '/icons/figma/logo-symbol-full.svg';
-  const wordmarkSrc = '/icons/figma/logo-wordmark.svg';
-  const symbolSrc = '/icons/figma/logo-symbol.svg';
+  const logoSrc = '/icons/figma/logo.svg';
+  const logoSymbolSrc = '/icons/figma/logo-symbol.svg';
 
   const baseAttrs = isDecorativeLogo
     ? 'aria-hidden="true"'
@@ -15,60 +14,46 @@
 
 <% if (logoVariant === 'symbol') { %>
   <span
-    class="relative block h-[62px] w-16 shrink-0 overflow-hidden <%= logoClassName %>"
+    class="relative block h-[46px] w-auto shrink-0 overflow-hidden lg:h-[62px] <%= logoClassName %>"
     data-node-id="38:128"
     data-name="Logo-Symbol"
     <%- baseAttrs %>
   >
     <img
-      src="<%= symbolSrc %>"
+      src="<%= logoSymbolSrc %>"
       alt="<%= isDecorativeLogo ? '' : logoLabel %>"
-      class="absolute inset-0 block size-full max-w-none"
+      class="block h-full w-auto max-w-none"
       loading="eager"
       decoding="async"
     >
   </span>
 <% } else if (logoVariant === 'mobile') { %>
   <span
-    class="inline-flex h-[62px] items-center gap-3 text-accent <%= logoClassName %>"
+    class="relative block h-[62px] w-auto shrink-0 overflow-hidden lg:h-[78px] <%= logoClassName %>"
     data-name="Logo-Mobile"
     <%- baseAttrs %>
   >
-    <span class="relative block h-[62px] w-16 shrink-0 overflow-hidden" aria-hidden="true" data-node-id="38:128">
-      <img
-        src="<%= symbolSrc %>"
-        alt=""
-        class="absolute inset-0 block size-full max-w-none"
-        loading="eager"
-        decoding="async"
-      >
-    </span>
-    <span class="text-2xl font-[200] leading-none tracking-[0.02em] text-accent">DRAGONFLY</span>
+    <img
+      src="<%= logoSrc %>"
+      alt="<%= isDecorativeLogo ? '' : logoLabel %>"
+      class="block h-full w-auto max-w-none"
+      loading="eager"
+      decoding="async"
+    >
   </span>
 <% } else { %>
   <span
-    class="relative block h-[78px] w-64 shrink-0 <%= logoClassName %>"
+    class="relative block h-[62px] w-auto shrink-0 overflow-hidden lg:h-[78px] <%= logoClassName %>"
     data-node-id="109:593"
     data-name="Logo"
     <%- baseAttrs %>
   >
-    <span class="absolute inset-y-0 left-0 block w-20 overflow-hidden" aria-hidden="true" data-node-id="109:578">
-      <img
-        src="<%= fullSymbolSrc %>"
-        alt=""
-        class="absolute inset-0 block size-full max-w-none"
-        loading="eager"
-        decoding="async"
-      >
-    </span>
-    <span class="absolute bottom-[37.18%] left-[37.5%] right-0 top-[37.18%] block" aria-hidden="true" data-node-id="109:592">
-      <img
-        src="<%= wordmarkSrc %>"
-        alt=""
-        class="absolute inset-0 block size-full max-w-none"
-        loading="eager"
-        decoding="async"
-      >
-    </span>
+    <img
+      src="<%= logoSrc %>"
+      alt="<%= isDecorativeLogo ? '' : logoLabel %>"
+      class="block h-full w-auto max-w-none"
+      loading="eager"
+      decoding="async"
+    >
   </span>
 <% } %>
