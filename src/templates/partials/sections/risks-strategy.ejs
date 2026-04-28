@@ -2,7 +2,7 @@
 const riskCards = [
   {
     mode: 'Консервативный',
-    income: 'Доход: 5-8%',
+    income: 'Доход: 5-8% в месяц',
     body: 'Возможен долив 50% от депозита',
     note: '(по истории: 2 года без долива)',
     drawdown: 'Просадка: 35%',
@@ -10,7 +10,7 @@ const riskCards = [
   },
   {
     mode: 'Умеренный',
-    income: 'Доход: 8-12%',
+    income: 'Доход: 8-12% в месяц',
     body: 'Возможен долив 100% от депозита',
     note: '(по истории: 1,5 года без долива)',
     drawdown: 'Просадка: 56%',
@@ -18,16 +18,16 @@ const riskCards = [
   },
   {
     mode: 'Агрессивный',
-    income: 'Доход: 12-20%',
+    income: 'Доход: 12-20% в месяц',
     body: 'Возможен долив 100-200% от депозита',
     note: '(периодически требует долива)',
     drawdown: 'Просадка: 56%',
     className: '!bg-[#1f1e1b]',
   },
   {
-    mode: 'Скальпер *',
-    income: 'Доход: до 7% в сутки',
-    body: 'Всегда держать до 300% на долив минимум',
+    mode: 'GOLD NEW *',
+    income: 'Доход: до 40% в сутки',
+    body: 'Риски ограничиваются депозитом',
     note: '(периодически требует долива)',
     drawdown: 'Просадка: 100%',
     className: '!bg-[#3d3a36]',
@@ -78,7 +78,7 @@ const riskCards = [
 
     <%- include('../ui/button', {
       label: 'Подключить бота',
-      href: 'https://youtu.be/xOcFb_trRMw?si=qsBxsej-1dmHWzk9',
+      href: 'https://youtu.be/yNU3TM6PKCk',
       size: 'large',
       className: 'h-12 w-full md:w-auto',
       attributes: { 'aria-label': 'Подключить бота', target: '_blank', rel: 'noopener noreferrer' },
